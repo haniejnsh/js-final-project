@@ -1,0 +1,19 @@
+{
+  "users": [
+    {
+      "email": "hanie@gmail.com",
+      "password": "$2a$10$naECJZ/8e8w6MCoJB9ps5O0IwZO8v.siMDdkz2G4Xsv3K/K6pNJae",
+      "id": 1
+    },
+    {
+      "email": "hanie@gmail.com",
+      "password": "$2a$10$h3bINMFKcf3/cyB4Zx8T0ObXDTWTJffOvdCZV88DY9TFzvoMB.KfO",
+      "id": 2
+    },
+    {
+      "email": "jnsh@gmail.com",
+      "password": "$2a$10$0uXH9jyl7kdun/c9JnDwgOlB02yKe4.FyJro7zVGPbP2dkYUoOLE2",
+      "id": 3
+    }
+  ]
+}
