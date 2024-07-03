@@ -25,17 +25,17 @@ const slider=[
 
 export function  htmlOnboardingPg3() {
         return `<div class="w-full flex flex-col overflow-hidden" >
-        <div class="w-full h-2/3 " >
+        <div class="w-full " >
           <img class="w-full h-full show-slider1 img-slider" src="${slider[0].img}" alt="" >
         </div>
-        <div class="text-xl font-bold text-center px-3 my-3 show-slider1 text-slider">${slider[0].text}</div>
-        <div class="flex justify-center gap-1 text-2xl my-3 icon-slider">
+        <div class="text-3xl font-bold text-center px-6 mt-7 show-slider1 text-slider">${slider[0].text}</div>
+        <div class="flex justify-center items-center gap-2 text-3xl my-4 icon-slider grow ">
           <i class="fa fa-window-minimize ${slider[0].icon[0]}" aria-hidden="true"></i>
           <i class="fa fa-window-minimize ${slider[0].icon[1]}" aria-hidden="true"></i>
           <i class="fa fa-window-minimize ${slider[0].icon[2]}" aria-hidden="true"></i>
         </div>
-        <div class="w-5/6 mt-4 mx-auto">
-          <input type="button" value="${slider[0].valBtn}" id="slide-btn" class="mx-auto border-black border-solid border-2 rounded-2xl w-full bg-black text-white text-sm py-1 hover:bg-slate-700">
+        <div class="w-5/6 mb-10 mx-auto ">
+          <input type="button" value="${slider[0].valBtn}" id="slide-btn" class="mx-auto border-black border-solid border-2 rounded-2xl w-full bg-black text-white text-sm py-2 hover:bg-slate-700">
         </div>
         
     </div>`;

@@ -6,6 +6,16 @@ body{
   /* font-family: Barlow; */
   font-family:Nanum;
 }
+#app{
+  max-width: 428px;
+}
+#footer-menu{
+  width: 426px;
+  /* cursor: po; */
+}
+/* #seeBrand-part-home::-webkit-scrollbar{
+  display: none;
+} */
 .show-slider1{
   animation: change3 0.5s linear
 }
@@ -14,6 +24,9 @@ body{
 }
 .show-slider3{
   animation: change3 0.5s linear;
+}
+.show-slider4{
+  animation: change4 0.5s linear;
 }
 @keyframes change3 {
     0% {
@@ -32,6 +45,14 @@ body{
     }
 }
 @keyframes change3 {
+  0% {
+    transform: translatex(-300px);
+  }
+  100% {
+    transform: translatex(0px);;
+  }
+}
+@keyframes change4 {
   0% {
     transform: translatex(-300px);
   }

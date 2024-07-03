@@ -5,6 +5,7 @@ import {htmlOnboardingPg3,funcOnboardingPg3} from "./pages/onboardingpg3";
 import {htmlLoginPg,funcLoginPg} from "./pages/loginpg";
 import {htmlSignUpPg,funcSignUpPg} from "./pages/signuppg";
 import {htmlHomePg,funcHomePg} from "./pages/homepg";
+import {htmlBrandPg,funcBrandPg} from "./pages/brandpg";
 // import {productDetailsPage , detailsFunc} from "./pages/productdetails";
 // import {loginPage , loginFunc} from "./pages/login";
 // import {signUpPage , signUpFunc} from "./pages/signup";
@@ -16,12 +17,14 @@ on('/product', htmlOnboardingPg2,funcOnboardingPg2()).
 on('/pg3', ()=> render(htmlOnboardingPg3() , funcOnboardingPg3)).
 on('/login', ()=> render(htmlLoginPg() , funcLoginPg)).
 on('/signup', ()=> render(htmlSignUpPg() , funcSignUpPg)).
-on('/home', ()=> render(htmlHomePg() , funcHomePg)).
+on('/home', (info)=> render(htmlHomePg(info) , funcHomePg)).
+on('/home/:brand', (b)=> render(htmlBrandPg(b) , funcBrandPg)).
 resolve();
 
-function render(children , func){
+function render(children , func,func2){
   document.querySelector("#app").innerHTML=`${children}`;
-    func();
+    if(func){func()}
+    if(func2){func2()}
 }
 // function render(children){
 //   document.querySelector("body").innerHTML=`<div id="app" class="max-w-xs bg-white min-h-screen my-0 mx-auto border-gray-300 border-solid border-2 rounded flex">${children}</div>`;
