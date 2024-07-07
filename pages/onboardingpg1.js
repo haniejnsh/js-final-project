@@ -16,7 +16,7 @@ export function  htmlOnboardingPg1() {
 }
 export const funcOnboardingPg1=()=>{
     // setTimeout(()=>{
-    //     router.navigate("/product");
+    //     router.navigate("/pg2");
     // },2000);
 }
 

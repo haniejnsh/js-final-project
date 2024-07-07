@@ -29,49 +29,49 @@ export function  htmlHomePg(s) {
 
 
           <div id="brandPage-part-home" class="grid grid-cols-4 mx-auto mt-2  w-full px-4">
-            <div class="m-3">
+            <div class="m-3 cursor-pointer">
               <div class="bg-slate-100 w-16 mx-auto h-16 rounded-full flex items-center">
-              <img src="./picture/categories.png" alt="" class="w-12 h-12  object-contain mx-auto rounded-full">
+              <img src="./picture/categories.png" alt="" class="w-12 h-12  object-contain mx-auto rounded-full ">
               </div>
               <p class="text-center mt-1 text-lg">Nike</p>
             </div>
-            <div class="m-3">
+            <div class="m-3 cursor-pointer" >
               <div class="bg-slate-100 w-16 mx-auto h-16 rounded-full flex items-center">
               <img src="./picture/adidas.png" alt="" class="w-12 h-12  object-contain mx-auto rounded-full">
               </div>
               <p class="text-center mt-1 text-lg">Adidas</p>
             </div>
-            <div class="m-3">
+            <div class="m-3 cursor-pointer">
               <div class="bg-slate-100 w-16 mx-auto h-16 rounded-full flex items-center">
               <img src="./picture/puma.png" alt="" class="w-12 h-12  object-contain mx-auto rounded-full">
               </div>
               <p class="text-center mt-1 text-lg">Puma</p>
             </div>
-            <div class="m-3">
+            <div class="m-3 cursor-pointer">
               <div class="bg-slate-100 w-16 mx-auto h-16 rounded-full flex items-center">
               <img src="./picture/asics.png" alt="" class="w-12 h-12  object-contain mx-auto rounded-full">
               </div>
               <p class="text-center mt-1 text-lg">Asics</p>
             </div>
-            <div class="m-3">
+            <div class="m-3 cursor-pointer">
               <div class="bg-slate-100 w-16 mx-auto h-16 rounded-full flex items-center">
               <img src="./picture/reebok.png" alt="" class="w-12 h-12  object-contain mx-auto rounded-full">
               </div>
               <p class="text-center mt-1 text-lg">Reebok</p>
             </div>
-            <div class="m-3">
+            <div class="m-3 cursor-pointer">
               <div class="bg-slate-100 w-16 mx-auto h-16 rounded-full flex items-center">
               <img src="./picture/newba.png" alt="" class="w-12 h-12  object-contain mx-auto rounded-full">
               </div>
               <p class="text-center mt-1 text-lg">New Ba...</p>
             </div>
-            <div class="m-3">
+            <div class="m-3 cursor-pointer">
               <div class="bg-slate-100 w-16 mx-auto h-16 rounded-full flex items-center">
               <img src="./picture/convers.png" alt="" class="w-12 h-12  object-contain mx-auto rounded-full">
               </div>
               <p class="text-center mt-1 text-lg">Converse</p>
             </div>
-            <div class="m-3">
+            <div class="m-3 cursor-pointer">
               <div class="bg-slate-100 w-16 mx-auto h-16 rounded-full flex ">
               <img src="./picture/more.png" alt="" class="w-12 h-12  object-contain mt-1 ml-1 rounded-full">
               </div>
@@ -81,7 +81,7 @@ export function  htmlHomePg(s) {
 
           <div id="seeAll-part-home" class="flex justify-between ml-6 mr-8 my-2">
             <p class="font-bold text-2xl">Most Popular</p>
-            <a href="#" class="font-bold text-lg ">See All</a>
+            <a href="/popular" data-navigo class="font-bold text-lg ">See All</a>
           </div>
 
           <div id="seeBrand-part-home" class="flex gap-3 mx-3 overflow-hidden my-2 hover:overflow-auto">
@@ -158,14 +158,14 @@ export const funcHomePg=()=>{
       const activate=await ax.get(`/products${s}`);
       activate.data.forEach(item=> {
           document.querySelector("#main-part-home").innerHTML+=`
-            <div class="flex flex-col meee">
+            <a class="flex flex-col cursor-pointer" href="/home/details/${item.id}" data-navigo>
               <div class="flex items-center rounded-xl h-36 w-full bg-slate-100"><img class="w-5/6 mx-auto object-cover" src="${item.imgSrc[0]}" alt=""></div>
-              <p class="w-full px-2 font-bold text-xl truncate">${item.name}</p>
+              <p class="w-full px-2 font-bold text-xl truncate" >${item.name}</p>
               <div class="pl-2 font-bold text-gray-700">
                 <span>$</span>
                 <span>${item.price}</span>
               </div>
-            </div>`;
+            </a>`;
       });
   }
   catch(e){
@@ -216,7 +216,7 @@ getProducts()
   // console.log(bell.classList.add("hii"));
   // console.log(bell);
   bell.addEventListener("click" ,()=>{
-    console.log(bell.classList);
+    // console.log(bell.classList);
     bell.classList.toggle("text-gray-400")
     bell.classList.toggle("text-yellow-400")
   })
@@ -227,8 +227,9 @@ getProducts()
   brandPgeItems.forEach(item=>{
     item.addEventListener("click" , ()=>{
       let param=((item.textContent).trim()).toLocaleLowerCase()
-      console.log(param);
+      // console.log(param);
       router.navigate(`/home/${param}`)
+      
     })
   })
 

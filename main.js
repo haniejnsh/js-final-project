@@ -5,20 +5,29 @@ import {htmlOnboardingPg3,funcOnboardingPg3} from "./pages/onboardingpg3";
 import {htmlLoginPg,funcLoginPg} from "./pages/loginpg";
 import {htmlSignUpPg,funcSignUpPg} from "./pages/signuppg";
 import {htmlHomePg,funcHomePg} from "./pages/homepg";
+import {htmlProductDetailsPg,funcProductDetailsPg} from "./pages/productdetailspg";
+// import {testFunc} from "./pages/test";
 import {htmlBrandPg,funcBrandPg} from "./pages/brandpg";
+import {htmlPopularPg,funcPopularPg} from "./pages/popularpg"
 // import {productDetailsPage , detailsFunc} from "./pages/productdetails";
 // import {loginPage , loginFunc} from "./pages/login";
 // import {signUpPage , signUpFunc} from "./pages/signup";
 import Navigo from 'navigo';
+if(!localStorage.getItem("allSelected")){
+  const objSelected={selected:[]}
+  localStorage.setItem("allSelected",JSON.stringify(objSelected))
+}
 
 export const router = new Navigo('/');
 router.on('/', htmlOnboardingPg1,funcOnboardingPg1()).
-on('/product', htmlOnboardingPg2,funcOnboardingPg2()).
+on('/pg2', htmlOnboardingPg2,funcOnboardingPg2()).
 on('/pg3', ()=> render(htmlOnboardingPg3() , funcOnboardingPg3)).
 on('/login', ()=> render(htmlLoginPg() , funcLoginPg)).
 on('/signup', ()=> render(htmlSignUpPg() , funcSignUpPg)).
 on('/home', (info)=> render(htmlHomePg(info) , funcHomePg)).
-on('/home/:brand', (b)=> render(htmlBrandPg(b) , funcBrandPg)).
+on('/home/details/:id', (de)=> render(htmlProductDetailsPg(de) ,funcProductDetailsPg)).
+on('/home/:brand', (b)=> render(htmlBrandPg(b) ,funcBrandPg)).
+on('/popular', ()=> render(htmlPopularPg() ,funcPopularPg)).
 resolve();
 
 function render(children , func,func2){

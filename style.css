@@ -8,6 +8,13 @@ body{
 }
 #app{
   max-width: 428px;
+  /* background-color: rgb(0, 0, 0); */
+}
+#cart{
+  width:426px;
+  
+  /* width: inherit; */
+  /* width: 100%; */
 }
 #footer-menu{
   width: 426px;
@@ -27,6 +34,12 @@ body{
 }
 .show-slider4{
   animation: change4 0.5s linear;
+}
+.show-slider5{
+  animation: change5 0.5s linear;
+}
+.show-slider6{
+  animation: change6 0.5s linear;
 }
 @keyframes change3 {
     0% {
@@ -55,6 +68,24 @@ body{
 @keyframes change4 {
   0% {
     transform: translatex(-300px);
+  }
+  100% {
+    transform: translatex(0px);;
+  }
+}
+@keyframes change5 {
+  /* product-details */
+  0% {
+    transform: translatex(-500px);
+  }
+  100% {
+    transform: translatex(0px);;
+  }
+}
+@keyframes change6 {
+  /* product-details */
+  0% {
+    transform: translatex(-500px);
   }
   100% {
     transform: translatex(0px);;

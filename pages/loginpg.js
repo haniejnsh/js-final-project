@@ -4,8 +4,8 @@ import {Button} from "./componentbutton";
 
 export function  htmlLoginPg() {
     
-        return `<div class="w-full flex flex-col" >
-        <div ><img class=" w-12 h-16 object-cover go-back" src="./picture/prev icon.png" alt=""></div>
+        return `<div class="w-full flex flex-col" ><div ><img class=" w-12 h-16 object-cover go-back" src="./picture/prev.png" alt=""></div>
+        
 
         <div class="h-1/4 flex"><img class="m-auto" src="./picture/logo.png" alt=""></div>
 
