@@ -2,7 +2,6 @@ import {ax} from "../api";
 import { router } from "../main";
 let flag
 export function  htmlHomePg(s) {
-    // console.log("1:",s);
     flag=s
     return `
     <div class="w-full flex flex-col" >
@@ -104,15 +103,15 @@ export function  htmlHomePg(s) {
 
 
         <div class="fixed flex bottom-0 bg-white px-4 gap-6 pt-2 pb-2" id="footer-menu">
-          <div class="my-auto mx-auto">
+          <div class="my-auto mx-auto cursor-pointer go-selected-page">
             <div class="w-10 h-10 flex justify-center items-center"><img class="w-8 mb-1" src="./picture/home.png" alt=""></div>
             <p class="text-sm font-bold text-center">Home</p>
           </div>
-          <div class="my-auto mx-auto">
+          <div class="my-auto mx-auto cursor-pointer go-selected-page">
             <div class="w-10 h-10 flex justify-center items-center"><img class="w-8 mb-1" src="./picture/cart.png" alt=""></div>
             <p class="text-sm font-bold text-center">Cart</p>
           </div>
-          <div class="my-auto mx-auto">
+          <div class="my-auto mx-auto cursor-pointer go-selected-page">
             <div class="w-10 h-10 flex justify-center items-center"><img class="w-10 mb-1" src="./picture/shoppi.png" alt=""></div>
             <p class="text-sm font-bold text-center">Orders</p>
           </div>
@@ -135,23 +134,10 @@ export function  htmlHomePg(s) {
 }
 
 
-// export const funcHomePg=()=>{
-// }
 export const funcHomePg=()=>{
-  // const brands=["Nike","Adidas","Puma","Asics","Reebok","NewBa","Converse","More"]
-  // console.log(brands);
   const brandPge=document.querySelector("#brandPage-part-home")
   const brandPgeItems=document.querySelectorAll("#brandPage-part-home>div")
   const brandList=document.querySelector("#seeBrand-part-home")
-  // brands.forEach(brand=>{
-  //   brandPge.innerHTML+=`
-  //     <div class="m-3">
-  //       <div class="bg-slate-100 w-16 mx-auto h-16 rounded-full flex items-center">
-  //       <img src="./picture/categories.png" alt="" class="w-12 h-12  object-contain mx-auto rounded-full">
-  //       </div>
-  //       <p class="text-center mt-1 text-lg">${brand}</p>
-  //     </div>`
-  // })
   const getProducts=async(s="")=>{
   document.querySelector("#main-part-home").innerHTML=""
   try{
@@ -172,28 +158,8 @@ export const funcHomePg=()=>{
       console.log(e);
   }
 }
-// const getBrands=async()=>{
 
-//   try{
-//       const activate2=await ax.get(`/brands`);
-//       activate2.data.forEach(item=> {
-//         brandPge.innerHTML+=`
-//         <div class="m-3">
-//         <div class="bg-slate-100 w-16 mx-auto h-16 rounded-full flex items-center">
-//         <img src="${item.imgSrc}" alt="" class="w-12 h-12  object-contain mx-auto rounded-full">
-//         </div>
-//         <p class="text-center mt-1 text-lg">${item.name}</p>
-//       </div>`;
-//       brandList.innerHTML+=`
-//       <div class="cursor-pointer border-solid border-2 border-gray-500 px-3 py-1 rounded-3xl text-gray-800 text-lg" onclick="yes()">${item.name}</div>`
-//     });
-//   }
-//   catch(e){
-//       console.log(e);
-//   }
-// }
 getProducts()
-// getBrands()
 
   const seeBrand=document.querySelectorAll("#seeBrand-part-home>div")
   const heart=document.querySelector(".fa-heart")
@@ -213,10 +179,7 @@ getProducts()
       item.classList.add("bg-gray-500","text-white")
     })
   })
-  // console.log(bell.classList.add("hii"));
-  // console.log(bell);
   bell.addEventListener("click" ,()=>{
-    // console.log(bell.classList);
     bell.classList.toggle("text-gray-400")
     bell.classList.toggle("text-yellow-400")
   })
@@ -227,65 +190,15 @@ getProducts()
   brandPgeItems.forEach(item=>{
     item.addEventListener("click" , ()=>{
       let param=((item.textContent).trim()).toLocaleLowerCase()
-      // console.log(param);
       router.navigate(`/home/${param}`)
       
     })
   })
-
-  // console.log("tartib",document.querySelectorAll(".meee"));
-  // func2HomePg()
-   
-}
-function func2HomePg(){
-//   console.log("ejra",document.querySelectorAll(".meee"));
-//   const seeBrand=document.querySelectorAll("#seeBrand-part-home>div")
-  // const heart=document.querySelector(".fa-heart")
-  // const bell=document.querySelector(".fa-bell")
-  // funcHomePg()
-
-  // // console.log(x);
-  // seeBrand.forEach(item =>{
-  //   console.log(item);
-  //   item.addEventListener("click",()=>{
-  //     // console.log("3:",flag);
-  //     // console.log((item.textContent).toLowerCase());
-  //     if(item.textContent!="All"){
-  //       funcHomePg(`?brand=${(item.textContent).toLowerCase()}`);
-  //     }
-  //     else if(item.textContent=="All"){
-  //       funcHomePg(``);
-  //     }
-      
-  //     seeBrand.forEach(i => i.classList.remove("bg-gray-500","text-white"))
-  //     item.classList.add("bg-gray-500","text-white")
-  //   })
-  // })
-  // // console.log(bell.classList.add("hii"));
-  // // console.log(bell);
-  // bell.addEventListener("click" ,()=>{
-  //   bell.classList.toggle("text-gray-400")
-  //   bell.classList.toggle("text-yellow-400")
-  // })
-  // heart.addEventListener("click" ,()=>{
-  //   heart.classList.toggle("text-gray-400")
-  //   heart.classList.toggle("text-red-400")
-  // })
-
-
-
-
-
-  // document.querySelector("#search-txt")?.addEventListener("input", _.debounce((e)=>{
-  // productFunc(`?q=${e.target.value.trim()}`);
-  // }, 500))
-  
-  // document.querySelector("#reverse-sort")?.addEventListener("click", (e)=>{
-  //         productFunc(`?_sort=price&_order=asc`);
-  //         })
-  
-  // document.querySelector("#sort1")?.addEventListener("click", (e)=>{
-  //     productFunc(`?_sort=title&_order=asc`);
-  //             })
-
+  document.querySelectorAll(".go-selected-page").forEach((pg,n)=>{
+    pg.addEventListener("click" , ()=>{
+      if(n==0){router.navigate(`/home`)}
+      else if(n==1){router.navigate(`/cart`)}
+      else if(n==2){}
+    })
+  }) 
 }

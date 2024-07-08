@@ -2,7 +2,6 @@ import {ax} from "../api";
 import { router } from "../main";
 let flag
 export function  htmlProductDetailsPg(s) {
-    // console.log("1:",s);
     flag=s
     return `
     <div class="w-full flex flex-col " >
@@ -104,17 +103,17 @@ export const funcProductDetailsPg=()=>{
   let selectedNumber
   let selectedSize
   let selectedColor
+  let selectedColorName
   let imagesAll
   let totalPrice=0
   let pricePerProduct
   let selectedId
-  let allSelectedProducts
+  let selectedPicture
+  let selectedNameShoe
 
   const getBrand=async()=>{
     try{
         const activate=await ax.get(`/products/${flag.data.id}`);
-        // console.log((activate.data.description).slice(0,70));
-        // console.log(activate);
         imageDetails.src=activate.data.imgSrc[0]
         nameDetails.innerHTML=activate.data.name
         descriptionDetails.innerHTML=(activate.data.description).slice(0,75)
@@ -123,8 +122,10 @@ export const funcProductDetailsPg=()=>{
         descriptionAll=activate.data.description
         quantityAll=activate.data.quantity
         imagesAll=activate.data.imgSrc
+        selectedNameShoe=activate.data.name
+        selectedPicture=activate.data.imgSrc[0]
+
         selectedId=activate.data.id
-        // console.log(imagesAll);
         imagesAll.forEach((icon,index)=>{
           if(index==0){
             iconsParent.innerHTML+=`<i class="fa fa-window-minimize text-black" aria-hidden="true"></i>`
@@ -135,27 +136,24 @@ export const funcProductDetailsPg=()=>{
         })
         let sizes=activate.data.sizes
         let colors=Object.values(activate.data.colors)
-        // console.log(colors);
+        let colorsName=Object.keys(activate.data.colors)
         sizesDetails.innerHTML=""
         colorsDetails.innerHTML=""
         sizes.map(size=>{
           sizesDetails.innerHTML +=`<div class="border-2 border-gray-600 border-solid rounded-full px-2 py-1 hover:text-black hover:border-black cursor-pointer">${size}</div>`
         })
-        colors.map(color=>{
-          colorsDetails.innerHTML +=`<div class="flex justify-center items-center text-2xl w-9 h-9 rounded-full border-solid border-2 border-white cursor-pointer hover:border-gray-400" style="background-color:${color};"></div>`
+        colors.map((color,n)=>{
+          colorsDetails.innerHTML +=`<div class="flex justify-center items-center text-2xl w-9 h-9 rounded-full border-solid border-2 border-white cursor-pointer hover:border-gray-400" style="background-color:${color};" id="${(colorsName[n]).trim()}"></div>`
         })
         if(activate.data.description.length>75){
           viewMore.classList.remove("hidden")
         }
-        // console.log(iconsPic,"---andddd----",document.querySelectorAll("#icon-pic>i"));
-        
         
     }
     catch(e){
         console.log(e);
     }
     viewMore.addEventListener("click" ,()=>{
-      // console.log(viewMore.textContent,"in");
       if(viewMore.textContent=="view more..."){
         descriptionDetails.innerHTML=descriptionAll
         viewMore.innerHTML="view less"
@@ -169,7 +167,6 @@ export const funcProductDetailsPg=()=>{
     document.querySelectorAll("#sizes-details>div").forEach((item,index,allArray)=>{
       item.addEventListener("click" , ()=>{
         selectedSize=item.textContent
-        // console.log(selectedSize);
         allArray.forEach(sel =>{
           sel.classList.remove("text-white" ,"bg-gray-600")
         })
@@ -179,8 +176,7 @@ export const funcProductDetailsPg=()=>{
     document.querySelectorAll("#colors-details>div").forEach((item,index,allArray)=>{
       item.addEventListener("click" , ()=>{
         selectedColor=item.style.backgroundColor
-        console.log(selectedColor);
-        // console.log(selectedS);
+        selectedColorName=item.id
         allArray.forEach(sel =>{
           sel.textContent=""
         })
@@ -188,7 +184,6 @@ export const funcProductDetailsPg=()=>{
         item.textContent="✔"
         if(item.style.backgroundColor=="rgb(0, 0, 0)"){
           item.classList.add("text-white")
-          console.log("black",item.classList);
         }
       })
     })
@@ -208,30 +203,27 @@ export const funcProductDetailsPg=()=>{
         numPic=0
       }
     })
-    // console.log(localStorage.getItem("allSelected"));
     btnDetails.addEventListener("click",()=>{
       const selectedProduct={
         selId:selectedId,
         selColor:selectedColor,
+        selNameColor:selectedColorName,
         selSize:selectedSize,
         selNumber:selectedNumber,
         selPrice:pricePerProduct,
-        selTotalPrice:totalPrice
+        selTotalPrice:totalPrice,
+        selPic:selectedPicture,
+        selShoe:selectedNameShoe,
+        selQuantity:quantityAll
+
       }
 
       if(selectedColor&&selectedSize&&(selectedNumber>0)){
-        console.log("you can");
         localStorage.setItem(`product${selectedId}`,JSON.stringify(selectedProduct))
-        // localStorage.setItem("allSelected",)
         let recentSelProduct=(JSON.parse(localStorage.getItem("allSelected"))).selected
-        console.log(JSON.parse(localStorage.getItem("allSelected")));
-        console.log("first",recentSelProduct);
         recentSelProduct.push(`product${selectedId}`)
-        console.log("second",recentSelProduct);
         let newPro={selected:recentSelProduct}
         localStorage.setItem("allSelected",JSON.stringify(newPro))
-        console.log("new",newPro);
-        // console.log(typeof(recentSelProduct));
         router.navigate(`/home`)
       }
     })
@@ -254,19 +246,15 @@ export const funcProductDetailsPg=()=>{
       priceDetails.innerHTML=totalPrice
       orderNumber.innerHTML=selectedNumber
     }
-    // console.log(selectedNumber);
   })
   plus.addEventListener("click" , ()=>{
-    // console.log(quantityAll);
     if(Number(orderNumber.textContent)<quantityAll){
       selectedNumber=(Number(orderNumber.textContent))+1
       totalPrice+=pricePerProduct
       priceDetails.innerHTML=totalPrice
       orderNumber.innerHTML=selectedNumber
     }
-    // console.log(selectedNumber);
   })
-  // localStorage.removeItem("")
 
 }
   

@@ -6,13 +6,11 @@ import {htmlLoginPg,funcLoginPg} from "./pages/loginpg";
 import {htmlSignUpPg,funcSignUpPg} from "./pages/signuppg";
 import {htmlHomePg,funcHomePg} from "./pages/homepg";
 import {htmlProductDetailsPg,funcProductDetailsPg} from "./pages/productdetailspg";
-// import {testFunc} from "./pages/test";
+import {htmlCartPg,funcCartPg} from "./pages/cartpg";
 import {htmlBrandPg,funcBrandPg} from "./pages/brandpg";
 import {htmlPopularPg,funcPopularPg} from "./pages/popularpg"
-// import {productDetailsPage , detailsFunc} from "./pages/productdetails";
-// import {loginPage , loginFunc} from "./pages/login";
-// import {signUpPage , signUpFunc} from "./pages/signup";
 import Navigo from 'navigo';
+// localStorage.clear()
 if(!localStorage.getItem("allSelected")){
   const objSelected={selected:[]}
   localStorage.setItem("allSelected",JSON.stringify(objSelected))
@@ -28,6 +26,7 @@ on('/home', (info)=> render(htmlHomePg(info) , funcHomePg)).
 on('/home/details/:id', (de)=> render(htmlProductDetailsPg(de) ,funcProductDetailsPg)).
 on('/home/:brand', (b)=> render(htmlBrandPg(b) ,funcBrandPg)).
 on('/popular', ()=> render(htmlPopularPg() ,funcPopularPg)).
+on('/cart', ()=> render(htmlCartPg() ,funcCartPg)).
 resolve();
 
 function render(children , func,func2){
