@@ -26,7 +26,7 @@ export function  htmlCartPg() {
             </p>
           </div>
           <div class="border-solid border-black border-2 shadow-slate-600 shadow-md rounded-full flex justify-center items-center px-au
-          w-4/6 bg-black text-white gap-6 h-14 cursor-pointer hover:bg-gray-800 transition-colors" id="btn-details">
+          w-4/6 bg-black text-white gap-6 h-14 cursor-pointer hover:bg-gray-800 transition-colors" id="btn-checkout">
             
             <div class="text-xl">Checkout</div>
             <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
@@ -63,40 +63,11 @@ export function  htmlCartPg() {
         <div id="modal-cart" class="hidden fixed bottom-0 top-0">
           <div class="flex w-full h-full items-end">
           
-          <div class="modal-content h-1/2 bg-white flex flex-col justify-between pb-4" style="border-top-left-radius:50px; border-top-right-radius:50px;">
+          <div class="modal-content w-full h-1/2 bg-white flex flex-col justify-between pb-4" style="border-top-left-radius:50px; border-top-right-radius:50px;">
             <div class="h-1/4 flex justify-center pt-10 font-bold text-3xl border-b border-gray-100">Remove From Cart?</div>
-            <div class="bg-gray-50 grow flex items-center">
-              <div class="show-sel flex bg-white  rounded-xl  mx-4 p-6 h-44">
-                <div class="w-2/5 bg-gray-100 rounded-xl flex justify-center items-center px-1"><img src="/picture/adidas/1.png" alt="selected pic" class="w-full"></div>
-                <div class="pl-4 py-1 grow flex flex-col justify-between">
-                  <div class="flex justify-between bg">
-                    <h2 class="text-lg font-bold">Air Jordan 3 Retro</h2>
-                  </div>
-                  <div class="flex gap-2 text-gray-600">
-                    <div class="flex gap-2">
-                      <div class=" w-4 h-4 rounded-full mt-1"   style="background-color:black;"></div>
-                      <span class="">black</span>
-                    </div>
-                    <div>|</div>
-                    <div class="flex">
-                      <span>Size</span>
-                      <span class="mx-1">=</span>
-                      <span>42</span>
-                    </div>
-                    
-                  </div>
-                  <div class="flex justify-between items-center pr-2 pl-2 mb-2">
-                    <div class="font-bold text-xl">
-                      <span>$</span>
-                      <span>250</span>
-                    </div>
-                    <div class="my-auto flex gap-3 text-xl bg-gray-100 px-3 py-1 rounded-lg">
-                      <span class="font-bold cursor-pointer hover:text-red-600" id="minus">-</span>
-                      <span class="text-lg" id="order-number">0</span>
-                      <span class="font-bold cursor-pointer hover:text-red-600" id="plus">+</span>
-                    </div>
-                  </div>
-                </div>
+            <div class="bg-gray-50 grow flex items-center w-full">
+              <div class="show-sel flex bg-white  rounded-xl  mx-4 p-6 h-44 w-full" id="modal-details">
+                
   
               </div>
             </div>
@@ -120,6 +91,7 @@ export const funcCartPg=()=>{
     const modalCart=document.querySelector("#modal-cart")
     const cancelDelete=document.querySelector(".cancel-delete")
     const confirmDelete=document.querySelector(".confirm-delete")
+    const goCheckout=document.querySelector("#btn-checkout")
     let selectedDetails
     let totalPrice=0
 
@@ -197,14 +169,49 @@ export const funcCartPg=()=>{
     document.querySelectorAll(".fa-trash").forEach(t=>{
         t.addEventListener("click" , ()=>{
             modalCart.classList.remove("hidden")
+            let localModal=JSON.parse(localStorage.getItem(`product${(t.id).slice(6)}`))
+            document.querySelector("#modal-details").innerHTML=`
+            <div class="w-2/5 bg-gray-100 rounded-xl flex justify-center items-center px-1 ">
+                <img src="${localModal.selPic}" alt="selected pic" class="w-full">
+                </div>
+                <div class="pl-4 py-1 grow flex flex-col justify-between">
+                  <div class="flex justify-between bg">
+                    <h2 class="text-lg font-bold" >${localModal.selShoe}</h2>
+                  </div>
+                  <div class="flex gap-2 text-gray-600">
+                    <div class="flex gap-2">
+                      <div class=" w-4 h-4 rounded-full mt-1"   style="background-color:${localModal.selColor};"></div>
+                      <span class="">${localModal.selNameColor}</span>
+                    </div>
+                    <div>|</div>
+                    <div class="flex">
+                      <span>Size</span>
+                      <span class="mx-1">=</span>
+                      <span>${localModal.selSize}</span>
+                    </div>
+                    
+                  </div>
+                  <div class="flex justify-between items-center pr-2 pl-2 mb-2">
+                    <div class="font-bold text-xl">
+                      <span>$</span>
+                      <span>${localModal.selTotalPrice}</span>
+                    </div>
+                    <div class="my-auto flex gap-3 text-xl bg-gray-100 px-3 py-1 rounded-lg">
+                      <span class="font-bold cursor-pointer hover:text-red-600" >-</span>
+                      <span class="text-lg">${localModal.selNumber}</span>
+                      <span class="font-bold cursor-pointer hover:text-red-600" >+</span>
+                    </div>
+                  </div>
+                </div>`
+                let modalTotalPrice=localModal.selTotalPrice
             confirmDelete.addEventListener("click" , ()=>{
-              // console.log(document.querySelector(`#sel${(t.id).slice(6)}`)  );
                 document.querySelector(`#sel${(t.id).slice(6)}`)?.remove()
                 localStorage.removeItem(`product${(t.id).slice(6)}`)
                 let local=(JSON.parse(localStorage.getItem("allSelected"))).selected
                 let newLocal=local.filter(loc=>loc!=`product${(t.id).slice(6)}`)
                 localStorage.setItem("allSelected",JSON.stringify({selected:newLocal}))
                 modalCart.classList.add("hidden")
+                showTotalPrice.innerHTML=(showTotalPrice.textContent-modalTotalPrice)
             })
             cancelDelete.addEventListener("click" , ()=>{
                 modalCart.classList.add("hidden")
@@ -218,6 +225,9 @@ export const funcCartPg=()=>{
         else if(n==1){router.navigate(`/cart`)}
         else if(n==2){}
       })
+    })
+    goCheckout.addEventListener("click" , ()=>{
+      router.navigate(`/cart/checkout`)
     })
 }
   

@@ -9,6 +9,10 @@ import {htmlProductDetailsPg,funcProductDetailsPg} from "./pages/productdetailsp
 import {htmlCartPg,funcCartPg} from "./pages/cartpg";
 import {htmlBrandPg,funcBrandPg} from "./pages/brandpg";
 import {htmlPopularPg,funcPopularPg} from "./pages/popularpg"
+import {htmlCheckoutPg,funcCheckoutPg} from "./pages/checkoutpg";
+import {htmlAddressPg,funcAddressPg} from "./pages/addresspg";
+import {htmlPaymentPg,funcPaymentPg} from "./pages/payment";
+import {htmlPostTypePg,funcPostTypePg} from "./pages/posttypepg";
 import Navigo from 'navigo';
 // localStorage.clear()
 if(!localStorage.getItem("allSelected")){
@@ -27,6 +31,10 @@ on('/home/details/:id', (de)=> render(htmlProductDetailsPg(de) ,funcProductDetai
 on('/home/:brand', (b)=> render(htmlBrandPg(b) ,funcBrandPg)).
 on('/popular', ()=> render(htmlPopularPg() ,funcPopularPg)).
 on('/cart', ()=> render(htmlCartPg() ,funcCartPg)).
+on('/cart/checkout', ()=> render(htmlCheckoutPg() ,funcCheckoutPg)).
+on('/cart/checkout/address', ()=> render(htmlAddressPg() ,funcAddressPg)).
+on('/cart/checkout/payment', ()=> render(htmlPaymentPg() ,funcPaymentPg)).
+on('/cart/checkout/post', ()=> render(htmlPostTypePg() ,funcPostTypePg)).
 resolve();
 
 function render(children , func,func2){

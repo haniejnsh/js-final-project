@@ -1,16 +1,11 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite App</title>
-    <!-- <link rel="stylesheet" href="./style.css"> -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-  </head>
-  <body class="bg-gray-600">
-    <div id="app" class=" bg-white min-h-screen my-0 mx-auto border-gray-300 border-solid border-2 rounded flex overflow-hidden">
-      <!-- <div class="w-full flex flex-col" >
+import {ax} from "../api";
+import { router } from "../main";
+
+
+export function  htmlPaymentPg() {
+
+        return`
+        <div class="w-full flex flex-col" >
         <div class="w-full flex flex-col overflow-auto grow" >
           <div class="flex">
             <img class=" w-12 h-16 object-cover go-back cursor-pointer" src='/picture/prev.png' alt="" id="go-back">
@@ -30,9 +25,9 @@
                 <h3 class="text-lg font-bold">My Wallet</h3>
               </div>
               <div class=" flex justify-between items-center px-1 gap-4">
-                <p class="text-xl font-bold text-gray-500"><span>$</span><span>30</span></p>
+                <p class="opacity-0 text-xl font-bold text-gray-500"><span>$</span><span>30</span></p>
                 <div class=" flex justify-center items-center w-5 h-5 rounded-full border-solid border-black border-4">
-                  <div class="w-full h-full rounded-full cursor-pointer border-solid border-2 border-white bg-black"></div>
+                  <div class="w-full h-full rounded-full cursor-pointer border-solid border-2 border-white btn"></div>
                 </div>
               </div>
              
@@ -50,7 +45,7 @@
               <div class=" flex justify-between items-center px-1 gap-4">
                 <p class="opacity-0 text-xl font-bold text-gray-500"><span>$</span><span>30</span></p>
                 <div class=" flex justify-center items-center w-5 h-5 rounded-full border-solid border-black border-4">
-                  <div class="w-full h-full rounded-full cursor-pointer border-solid border-2 border-white"></div>
+                  <div class="w-full h-full rounded-full cursor-pointer border-solid border-2 border-white btn"></div>
                 </div>
               </div>
              
@@ -67,7 +62,7 @@
               <div class=" flex justify-between items-center px-1 gap-4">
                 <p class="opacity-0 text-xl font-bold text-gray-500"><span>$</span><span>30</span></p>
                 <div class=" flex justify-center items-center w-5 h-5 rounded-full border-solid border-black border-4">
-                  <div class="w-full h-full rounded-full cursor-pointer border-solid border-2 border-white"></div>
+                  <div class="w-full h-full rounded-full cursor-pointer border-solid border-2 border-white btn"></div>
                 </div>
               </div>
              
@@ -82,20 +77,44 @@
    
         <div class=" w-full h-32 flex "></div>
         <div class="flex pl-7 border-t bg-white justify-center pr-7 pt-8 pb-10 fixed bottom-0 rounded-t-3xl" id="cart">
-          <div class="border-solid border-black border-2 shadow-slate-600 shadow-md rounded-full flex justify-center items-center px-au
-          w-full bg-black text-white gap-6 h-14 cursor-pointer hover:bg-gray-800 transition-colors" id="btn-details">
+          <div class="border-solid border-black border-2 shadow-slate-600 shadow-md rounded-full flex justify-center items-center w-full bg-black text-white gap-6 h-14 cursor-pointer hover:bg-gray-800 transition-colors" id="btn-payment">
             
             <div class="text-xl">Confirm Payment</div>
           </div>
         </div>
         
           
-        </div> -->
+        </div>`
+        
+        
+}
 
-    </div>
+export const funcPaymentPg=()=>{
+    console.log("payment");
+    const root=document.querySelector("#root")
+  const img=document.querySelectorAll("#root img")
+  const name=document.querySelectorAll("#root h3")
+  const price=document.querySelectorAll(".price")
+  const details=document.querySelectorAll(".details")
+  let select=false
 
+    document.querySelectorAll(".btn").forEach((bt,i,arr)=>{
 
-    <script type="module" src="/main.js"></script>
-  </body>
-</html>
+      bt.addEventListener("click" , ()=>{
+        arr.forEach(m=>m.classList.remove("bg-black"))
+        bt.classList.add("bg-black")
+        select=true
+        
+      })
+    })
 
+    document.querySelector("#go-back").addEventListener("click" , ()=>{
+      router.navigate(`/cart/checkout`)
+    })
+
+    document.querySelector("#btn-payment").addEventListener("click" , ()=>{
+      if(select==true){
+        router.navigate(`/cart/checkout`)
+      }
+    })
+}
