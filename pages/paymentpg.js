@@ -127,7 +127,20 @@ export const funcPaymentPg=()=>{
           }
         }
         document.querySelector("#btn-confirm").addEventListener("click",()=>{
-          router.navigate(`/cart/checkout`)
+          let local=JSON.parse(localStorage.getItem("allSelected")).selected
+          localStorage.removeItem("allSelected")
+          let allOrder=[]
+          local.forEach(item=>{
+            let details=JSON.parse(localStorage.getItem(item))
+            localStorage.setItem(`order${details.selId}`, JSON.stringify(details))
+            allOrder.push(`order${details.selId}`)
+            localStorage.removeItem(item)
+          })
+          let obj={
+            selected:allOrder
+          }
+          localStorage.setItem("allOrders",JSON.stringify(obj))
+          router.navigate(`/orders`)
         })
       }
       

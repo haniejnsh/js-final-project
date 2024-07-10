@@ -123,7 +123,6 @@ export function  htmlCheckoutPg() {
 }
 
 export const funcCheckoutPg=()=>{
-    console.log("checkout");
     const goBack=document.querySelector("#go-back")
     let selectedProductNames=JSON.parse(localStorage.getItem("allSelected")).selected//ok
     const showAll=document.querySelector("#show-all-selected")

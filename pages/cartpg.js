@@ -85,7 +85,7 @@ export function  htmlCartPg() {
     }
 
 export const funcCartPg=()=>{
-    let selectedProductNames=JSON.parse(localStorage.getItem("allSelected")).selected
+    let selectedProductNames=JSON.parse(localStorage.getItem("allSelected"))?.selected
     const showAll=document.querySelector("#show-all-selected")
     const showTotalPrice=document.querySelector("#show-total-price")
     const modalCart=document.querySelector("#modal-cart")
@@ -97,7 +97,7 @@ export const funcCartPg=()=>{
     let localDel
     let numberLocal
 
-  selectedProductNames.map(pro=>{
+  selectedProductNames?.map(pro=>{
     selectedDetails=JSON.parse(localStorage.getItem(pro))
     totalPrice+=(selectedDetails.selTotalPrice)
     showAll.innerHTML+=`
@@ -228,7 +228,7 @@ export const funcCartPg=()=>{
       pg.addEventListener("click" , ()=>{
         if(n==0){router.navigate(`/home`)}
         else if(n==1){router.navigate(`/cart`)}
-        else if(n==2){}
+        else if(n==2){router.navigate(`/orders`)}
       })
     })
     goCheckout.addEventListener("click" , ()=>{

@@ -14,6 +14,7 @@ import {htmlAddressPg,funcAddressPg} from "./pages/addresspg";
 import {htmlPaymentPg,funcPaymentPg} from "./pages/paymentpg";
 import {htmlPostTypePg,funcPostTypePg} from "./pages/posttypepg";
 import {htmlSearchPg,funcSearchPg} from "./pages/searchpg";
+import {htmlOrdersPg,funcOrdersPg} from "./pages/orderspg";
 import Navigo from 'navigo';
 // localStorage.clear()
 if(!localStorage.getItem("allSelected")){
@@ -68,6 +69,7 @@ on('/cart/checkout/address',()=>checkAuth( ()=> render(htmlAddressPg() ,funcAddr
 on('/cart/checkout/payment',()=>checkAuth( ()=> render(htmlPaymentPg() ,funcPaymentPg))).
 on('/cart/checkout/post',()=>checkAuth( ()=> render(htmlPostTypePg() ,funcPostTypePg))).
 on('/search',()=>checkAuth( ()=> render(htmlSearchPg() ,funcSearchPg))).
+on('/orders',()=>checkAuth( ()=> render(htmlOrdersPg() ,funcOrdersPg))).
 resolve();
 
 function render(children , func,func2){

@@ -199,7 +199,7 @@ getProducts()
     pg.addEventListener("click" , ()=>{
       if(n==0){router.navigate(`/home`)}
       else if(n==1){router.navigate(`/cart`)}
-      else if(n==2){}
+      else if(n==2){router.navigate(`/orders`)}
     })
   }) 
   goSearch.addEventListener("click" , ()=>{
