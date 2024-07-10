@@ -11,7 +11,7 @@ export function  htmlHomePg(s) {
             <img src="./picture/ahmadpic.jpg" alt="" class="w-12 h-12 rounded-full mt-1">
             <div class="ml-3">
               <p class="font-bold text-gray-400 text-lg">Good Morning 👋</p>
-              <p class="font-bold text-black text-xl">Saeed Abdilar</p>
+              <p class="font-bold text-black text-xl" id="name-user">Saeed Abdilar</p>
             </div>
             <div class="grow  flex justify-end items-center gap-3 pr-2">
               <i class="fa fa-bell text-2xl text-gray-400 " aria-hidden="true"></i>
@@ -20,9 +20,9 @@ export function  htmlHomePg(s) {
           </div>
 
           <div id="search-part-home" class="w-full mt-2">
-            <label for="srch" class="flex w-ful mx-6 border-solid border-gray-100 border-2 rounded-lg px-2 py-1 bg-gray-50">
-              <i class="fa fa-search text-gray-400 my-auto" aria-hidden="true"></i>
-            <input type="text" placeholder="Search" id="srch" class="grow ml-2 text-gray-400 text-lg my-auto bg-gray-50 focus:outline-none">
+            <label for="srch" class="flex w-ful mx-6 border-solid border-gray-100 border-2 rounded-lg px-2 py-2 bg-gray-50">
+              <input type="text" placeholder="Search" id="srch" class="grow ml-2 text-gray-600 text-xl my-auto bg-gray-50 focus:outline-none">
+              <i class="fa fa-search text-gray-600 my-auto mx-2 text-xl cursor-pointer" aria-hidden="true" id="go-search"></i>
             </label>
           </div>
 
@@ -135,9 +135,10 @@ export function  htmlHomePg(s) {
 
 
 export const funcHomePg=()=>{
-  const brandPge=document.querySelector("#brandPage-part-home")
   const brandPgeItems=document.querySelectorAll("#brandPage-part-home>div")
-  const brandList=document.querySelector("#seeBrand-part-home")
+  const searchBox=document.querySelector("#srch")
+  const goSearch=document.querySelector("#go-search")
+  const nameUser=document.querySelector("#name-user")
   const getProducts=async(s="")=>{
   document.querySelector("#main-part-home").innerHTML=""
   try{
@@ -201,4 +202,12 @@ getProducts()
       else if(n==2){}
     })
   }) 
+  goSearch.addEventListener("click" , ()=>{
+    if(searchBox.value!=""){
+      localStorage.setItem("search" , searchBox.value)
+      router.navigate(`/search`)
+    }
+  })
+  let emailName=localStorage.getItem("email").split("@")[0]
+  nameUser.innerHTML=emailName
 }

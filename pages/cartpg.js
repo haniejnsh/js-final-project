@@ -94,6 +94,8 @@ export const funcCartPg=()=>{
     const goCheckout=document.querySelector("#btn-checkout")
     let selectedDetails
     let totalPrice=0
+    let localDel
+    let numberLocal
 
   selectedProductNames.map(pro=>{
     selectedDetails=JSON.parse(localStorage.getItem(pro))
@@ -166,6 +168,7 @@ export const funcCartPg=()=>{
             }
     })
     })
+    
     document.querySelectorAll(".fa-trash").forEach(t=>{
         t.addEventListener("click" , ()=>{
             modalCart.classList.remove("hidden")
@@ -203,22 +206,24 @@ export const funcCartPg=()=>{
                     </div>
                   </div>
                 </div>`
-                let modalTotalPrice=localModal.selTotalPrice
-            confirmDelete.addEventListener("click" , ()=>{
-                document.querySelector(`#sel${(t.id).slice(6)}`)?.remove()
-                localStorage.removeItem(`product${(t.id).slice(6)}`)
-                let local=(JSON.parse(localStorage.getItem("allSelected"))).selected
-                let newLocal=local.filter(loc=>loc!=`product${(t.id).slice(6)}`)
-                localStorage.setItem("allSelected",JSON.stringify({selected:newLocal}))
-                modalCart.classList.add("hidden")
-                showTotalPrice.innerHTML=(showTotalPrice.textContent-modalTotalPrice)
-            })
+            numberLocal=(t.id).slice(6)
             cancelDelete.addEventListener("click" , ()=>{
                 modalCart.classList.add("hidden")
             })
 
         })
     })
+    confirmDelete.addEventListener("click" , ()=>{
+      document.querySelector(`#sel${numberLocal}`)?.remove()
+      localDel=JSON.parse(localStorage.getItem(`product${numberLocal}`))
+      showTotalPrice.textContent=(Number(showTotalPrice.textContent))-(localDel.selTotalPrice)
+      localStorage.removeItem(`product${numberLocal}`)
+      let local=(JSON.parse(localStorage.getItem("allSelected"))).selected
+      let newLocal=local.filter(loc=>loc!=`product${numberLocal}`)
+      localStorage.setItem("allSelected",JSON.stringify({selected:newLocal}))
+      modalCart.classList.add("hidden")
+      
+  })
     document.querySelectorAll(".go-selected-page").forEach((pg,n)=>{
       pg.addEventListener("click" , ()=>{
         if(n==0){router.navigate(`/home`)}

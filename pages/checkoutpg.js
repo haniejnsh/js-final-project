@@ -23,7 +23,7 @@ export function  htmlCheckoutPg() {
           <p class="text-gray-500 text-base truncate">61480 Sunbrook park, Park, PC 5679</p>
         </div>
         <div class=" flex justify-center items-center px-2">
-          <i class="fa fa-pencil text-xl cursor-pointer hover:text-gray-400 transition" aria-hidden="true"></i>
+          <i class="fa fa-pencil text-xl cursor-pointer hover:text-gray-400 transition" aria-hidden="true" id="go-address"></i>
         </div>
       </div>
     </div>
@@ -129,6 +129,7 @@ export const funcCheckoutPg=()=>{
     const showAll=document.querySelector("#show-all-selected")
     const goPostType=document.querySelector("#go-post-type")
     const goPayment=document.querySelector("#btn-payment")
+    const goAddress=document.querySelector("#go-address")
     const selectedPost=document.querySelector("#sel-post")
     const noSelectedPost=document.querySelector("#no-sel-post")
     const doOff=document.querySelector("#off")
@@ -198,6 +199,9 @@ export const funcCheckoutPg=()=>{
   })
   goPostType.addEventListener("click" , ()=>{
     router.navigate(`/cart/checkout/post`)
+  })
+  goAddress.addEventListener("click" , ()=>{
+    router.navigate(`/cart/checkout/address`)
   })
   goBack.addEventListener("click" , ()=>{
     router.navigate(`/cart`)

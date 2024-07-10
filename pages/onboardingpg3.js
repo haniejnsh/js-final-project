@@ -46,14 +46,11 @@ let firstClick=false;
 let secondClick=false;
 export const funcOnboardingPg3=()=>{
   
-
   document.querySelector("#slide-btn").addEventListener("click" , ()=>{
     if(firstClick && secondClick){
       router.navigate("/login");
     }
   })
-
-
 
   document.querySelector("#slide-btn").addEventListener("click" , ()=>{
     if(firstClick && !secondClick){
@@ -87,33 +84,4 @@ export const funcOnboardingPg3=()=>{
         }
       })
       
-        // let x=document.querySelector(".text-slider").innerHTML
-        // console.log(x);
-    //     document.querySelector("#app").innerHTML=`<div class="w-full flex flex-col overflow-hidden" >
-    //     <div class="w-full h-2/3 " >
-    //       <img class="w-full h-full show-slider" src="${slider[1].img}" alt="" >
-    //     </div>
-    //     <div class="text-xl font-bold text-center px-3 my-3 show-slider">${slider[1].text}</div>
-    //     <div class="flex justify-center gap-1 text-2xl my-3">
-    //       <i class="fa fa-window-minimize ${slider[1].icon[0]}" aria-hidden="true"></i>
-    //       <i class="fa fa-window-minimize ${slider[1].icon[1]}" aria-hidden="true"></i>
-    //       <i class="fa fa-window-minimize ${slider[1].icon[2]}" aria-hidden="true"></i>
-    //     </div>
-    //     <div class="w-5/6 mt-4 mx-auto">
-    //       <input type="button" value="${slider[1].valBtn}" id="slide${slider[1].id}" class="mx-auto border-black border-solid border-2 rounded-2xl w-full bg-black text-white text-sm py-1 hover:bg-slate-700">
-    //     </div>
-        
-    // </div>`;
-    
-    // const fun=()=>{
-    // console.log(document.querySelector("#slide2"));
-    // }
-    // fun()
-    // document.querySelector("#slide2").addEventListener("click" , ()=>{
-    //     let y=htmlOnboardingPg3(2)
-    //     document.querySelector("#app").innerHTML=`${y}`
-    // })
-//     document.querySelector("#btn-sign-up").addEventListener("click" , ()=>{
-//         router.navigate("/signup")
-//     })
 }

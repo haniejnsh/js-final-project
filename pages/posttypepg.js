@@ -4,7 +4,7 @@ import { router } from "../main";
 
 export function  htmlPostTypePg() {
 
-        return`<div class="w-full flex flex-col" >
+      return`<div class="w-full flex flex-col" >
         <div class="w-full flex flex-col overflow-auto grow" >
           <div class="flex">
             <img class=" w-12 h-16 object-cover go-back cursor-pointer" src='/picture/prev.png' alt="" id="go-back">

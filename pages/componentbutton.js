@@ -12,7 +12,7 @@ export const Button = ({content , variant = "regular",idName="btn" , ...restProp
 
     return `
         <div class="w-5/6 mb-10 mx-auto ">
-            <input type="button" id=${idName} value="${content}" class=" w-full rounded-2xl  text-sm py-2 mx-auto   ${classes}"
+            <input type="button" id=${idName} value="${content}" class=" w-full rounded-2xl  text-sm py-3 mx-auto   ${classes}"
             ...${restProps}
             >
         </div>

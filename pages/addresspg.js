@@ -54,5 +54,8 @@ export function  htmlAddressPg() {
 }
 
 export const funcAddressPg=()=>{
-    console.log("address");
+  const goBack=document.querySelector("#go-back")
+  goBack.addEventListener("click" , ()=>{
+    router.navigate(`/cart`)
+  })
 }
